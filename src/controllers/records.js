@@ -1,4 +1,4 @@
-const service = require("../services/Records");
+const service = require("../services/records");
 
 const recordsBetweenDateAndCount = (req, res) => {
     // TODO implement
