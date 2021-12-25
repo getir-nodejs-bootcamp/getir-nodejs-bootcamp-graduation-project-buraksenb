@@ -1,11 +1,10 @@
 
-const successfulApiResponse = (records) =>
+const successfulApiResponse = (data) =>
 {
     return ({
         code : 0,
-        message : "Success",
-        records : records
+        msg : "Success",
+        ...data
     })
 }
-
 module.exports = {successfulApiResponse}

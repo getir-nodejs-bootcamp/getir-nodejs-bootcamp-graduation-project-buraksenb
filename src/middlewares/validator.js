@@ -1,11 +1,11 @@
+const ValidationError = require('../errors/validation')
 
 const validator = (schema) => (req, res, next) => {
-    // console.log("body",req.body)
     const { value, error } = schema.validate(req.body);
 
     if (error) {
         const errorMessage = error?.details?.map((detail) => detail?.message).join(", ");
-        return res.status(500).send({ error: errorMessage });
+        return next(new ValidationError(errorMessage))
     }
     Object.assign(req, value);
     return next();
