@@ -1,7 +1,11 @@
 const service = require("../services/records");
+const {successfulApiResponse} = require("../utils/api-response");
 
 const recordsBetweenDateAndCount = (req, res) => {
-    // TODO implement
+    service.recordsBetweenDateAndCount(req.body).then(records => {
+        res.status(200).send(successfulApiResponse(records))
+    })
+
 };
 
 

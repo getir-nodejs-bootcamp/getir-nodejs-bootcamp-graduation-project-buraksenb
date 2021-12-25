@@ -12,6 +12,8 @@ app.use(helmet())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.APP_PORT, () => {
+    console.log(`Listening on ${process.env.APP_PORT} port.`)
     app.use("/records",recordRoutes );
+
 });

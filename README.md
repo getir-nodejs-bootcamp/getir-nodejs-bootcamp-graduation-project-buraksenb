@@ -4,7 +4,7 @@ A RESTful API with a single endpoint which is hosted on Heroku and implemented w
 
 ## TODOS : 
 - [x] Complete basic structure
-- [ ] Complete basic functionality.
+- [x] Complete basic functionality.
 - [ ] Add exception handling.
 - [ ] Add logger.
 - [ ] Add unit and integration tests.
