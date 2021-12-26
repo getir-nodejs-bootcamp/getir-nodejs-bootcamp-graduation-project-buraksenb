@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "serve": "node ./src/app.js",
-    "dev": "nodemon ./src/app.js"
+    "dev": "nodemon ./src/app.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,10 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "flush-promises": "^1.0.2",
+    "jest": "^27.4.5",
+    "mockingoose": "^2.15.2",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.1.6"
   }
 }
