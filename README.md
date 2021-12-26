@@ -11,6 +11,6 @@ A RESTful API with a single endpoint which is hosted on Heroku and implemented w
 - [x] Add exception handling.
 - [x] Add logger.
 - [x] Add unit and integration tests.
-- [ ] Add swagger documentation and update README.md .
+- [x] Add swagger documentation and update README.md .
 - [ ] Deploy to Heroku.
 

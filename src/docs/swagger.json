@@ -1,0 +1,149 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This API is to filter records with respect to count and date ranges for Getir Node.js Bootcamp Graduation.\n\n Author: Burak SEN <buraksenb@gmail.com>",
+    "version": "1.0.0",
+    "title": "Getir Records API",
+    "license": {
+      "name": "MIT",
+      "url": "https://www.opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:8080",
+  "schemes": [
+    "http"
+  ],
+  "tags": [],
+  "definitions": {
+    "queryFilter": {
+      "properties": {
+        "startDate": {
+          "type": "string",
+          "format": "date",
+          "description": "YYYY-MM-DD",
+          "example": "2016-12-26"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date",
+          "description": "YYYY-MM-DD",
+          "example": "2017-03-02"
+        },
+        "minCount": {
+          "type": "number",
+          "format": "integer",
+          "example": 100
+        },
+        "maxCount": {
+          "type": "number",
+          "format": "integer",
+          "example": 200
+        }
+      }
+    },
+    "badRequestResponse": {
+      "properties": {
+        "error": {
+          "type": "object",
+          "format": "integer",
+          "example": {
+            "message": "\"minCount\" must be a positive number"
+          }
+        }
+      }
+    },
+    "successfulResponse": {
+      "properties": {
+        "code": {
+          "type": "number",
+          "format": "integer",
+          "example": 0
+        },
+        "msg": {
+          "type": "string",
+          "example": "Success"
+        },
+        "records": {
+          "type": "array",
+          "example": [
+            {
+              "key": "TAKwGc6Jr4i8Z487",
+              "createdAt": "2017-01-28T01:22:14.398Z",
+              "totalCount": 170
+            },
+            {
+              "key": "TAKwGc6Jr4i8Z487",
+              "createdAt": "2017-01-28T01:22:14.398Z",
+              "totalCount": 120
+            },
+            {
+              "key": "kOKMRjkB",
+              "createdAt": "2016-12-30T11:56:25.780Z",
+              "totalCount": 120
+            },
+            {
+              "key": "LSyjwviN",
+              "createdAt": "2016-12-30T01:31:07.831Z",
+              "totalCount": 116
+            },
+            {
+              "key": "fCbdWTLD",
+              "createdAt": "2016-12-29T23:54:11.832Z",
+              "totalCount": 154
+            },
+            {
+              "key": "CdjItXwd",
+              "createdAt": "2016-12-29T17:53:44.393Z",
+              "totalCount": 138
+            },
+            {
+              "key": "XlqCuHpo",
+              "createdAt": "2016-12-27T15:33:59.004Z",
+              "totalCount": 179
+            },
+            {
+              "key": "JuFWNLyO",
+              "createdAt": "2016-12-26T18:26:11.183Z",
+              "totalCount": 102
+            }
+          ]
+        }
+      }
+    }
+  },
+  "paths": {
+    "/records/": {
+      "post": {
+        "tags": [
+          "Records"
+        ],
+        "summary": "Filtered Records",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Get filtered records",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/queryFilter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returns filtered records.",
+            "schema": {
+              "$ref": "#/definitions/successfulResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request(Example is for Validation Error).",
+            "schema": {
+              "$ref": "#/definitions/badRequestResponse"
+            }
+          }
+        }
+      }
+    }
+  }
+}

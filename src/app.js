@@ -4,13 +4,15 @@ const helmet = require("helmet")
 const morgan = require("morgan");
 const fs = require("fs");
 const path = require("path");
-
+const swaggerUi = require('swagger-ui-express');
 // Project dependencies.
+
 const loaders = require("./loaders");
 const config = require("./config");
 const recordRoutes = require("./routes")
 const NotFoundError = require("./errors/not-found");
 const errorHandler = require("./middlewares/error-handler");
+const swaggerDocument = require('./docs/swagger.json');
 
 const app = express();
 config();
@@ -26,7 +28,7 @@ else {
         path.join(__dirname, process.env.LOG_PATH, 'access.log'), {flags: 'a'})
     app.use(morgan('combined', {stream: accessLogStream}))
 }
-
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
