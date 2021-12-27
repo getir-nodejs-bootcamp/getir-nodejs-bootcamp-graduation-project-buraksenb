@@ -21,7 +21,7 @@ loaders();
 app.use(helmet())
 
 // Log incoming requests with Morgan. If in production log to console, otherwise log to file.
-if (process.env.NODE_ENV === "production")
+if (process.env.NODE_ENV !== "production")
     app.use(morgan("dev"))
 else {
     const accessLogStream = fs.createWriteStream(
@@ -32,8 +32,8 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-const server = app.listen(process.env.APP_PORT, () => {
-    console.log(`Server is listening on ${process.env.APP_PORT} port.`)
+const server = app.listen(process.env.PORT || 8080, () => {
+    console.log(`Server is listening on ${process.env.PORT || 8080} port.`)
     app.use("/records", recordRoutes);
 
     // Direct  requests with invalid paths to error handler.
