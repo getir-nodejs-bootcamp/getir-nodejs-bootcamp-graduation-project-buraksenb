@@ -1,6 +1,7 @@
 // Required packages.
 const express = require("express")
 const helmet = require("helmet")
+const cors = require('cors')
 const morgan = require("morgan");
 const fs = require("fs");
 const path = require("path");
@@ -14,11 +15,21 @@ const NotFoundError = require("./errors/not-found");
 const errorHandler = require("./middlewares/error-handler");
 const swaggerDocument = require('./docs/swagger.json');
 
+// To allow only POST method to the API.
+
 const app = express();
 config();
 loaders();
 
 app.use(helmet())
+
+const options = {
+    origin: "*",
+    methods: "POST",
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+}
+app.use(cors(options))
 
 // Log incoming requests with Morgan. If in production log to console, otherwise log to file.
 if (process.env.NODE_ENV !== "production")
